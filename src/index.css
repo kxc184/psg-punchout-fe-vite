@@ -1,0 +1,8 @@
+/* Core Dropcloth styles and design tokens */
+@import '@sherwin-williams-co/dropcloth/dist/styles/dropcloth-styles.css';
+
+/* Dropcloth theme variables for Tailwind integration */
+@import '@sherwin-williams-co/dropcloth/dist/styles/dropcloth-theme-base.css';
+
+/* Tailwind CSS with a custom prefix to avoid class conflicts */
+@import 'tailwindcss' prefix(sw);

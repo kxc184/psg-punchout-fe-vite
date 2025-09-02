@@ -1,0 +1,47 @@
+import ProductSuggestion from "./ProductSuggestion";
+import { AutoSuggestData } from "./hooks/useAutoSuggestApi";
+
+const AutoSuggest = ({
+  autoSuggestData,
+  onCategoryClick,
+}: {
+  autoSuggestData: AutoSuggestData;
+  onCategoryClick: (term: string) => void;
+}) => {
+  return (
+    <section
+      className="AutoSuggestContainer sw:bg-white sw:w-full sw:absolute sw:top-[auto] sw:left-0 sw:z-[1000] swdc-typeset-ui-4b"
+      aria-label="auto suggest"
+    >
+      <div className="sw:h-full sw:grid sw:grid-cols-[1fr_3fr] md:sw:grid-cols-[256px_auto]">
+        <section
+          className="categorySuggestions sw:p-2 sw:flex sw:flex-col sw:text-pro-secondary sw:my-1"
+          aria-label="category suggestion"
+        >
+          {autoSuggestData.categories?.length > 0 && (
+            <ul>
+              {autoSuggestData.categories.map((category, i) => (
+                <li
+                  key={`${i}-${category.catent_product_name}`}
+                  className="sw:mb-2"
+                >
+                  <button
+                    className=" sw:text-start"
+                    onClick={() => {
+                      onCategoryClick(category.catent_product_name);
+                    }}
+                  >
+                    {category.catent_product_name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+        <ProductSuggestion autoSuggestData={autoSuggestData} />
+      </div>
+    </section>
+  );
+};
+
+export default AutoSuggest;
