@@ -1,4 +1,6 @@
+import { useBannerStore } from "../../lib/store/bannerStore";
 import { useAccount } from "../../api/account/useAccount";
+import { useEffect } from "react";
 
 export interface IAccountInfo {
   orgEntityDisplayName: string;
@@ -6,13 +8,24 @@ export interface IAccountInfo {
 }
 export type TAccountInfo = IAccountInfo | undefined;
 const AccountInfo = () => {
-  const { data: account } = useAccount();
+  const addBanner = useBannerStore.getState().addBanner;
+  const { data: account, error } = useAccount();
 
   const { orgEntityDisplayName, accountNumber } = account || {
     orgEntityDisplayName: "Not Found",
     accountNumber: "Invalid",
   };
-  // TODO: Error State
+  // TODO: Error State non blocking
+  useEffect(() => {
+    if (error) {
+      addBanner({
+        id: Date.now(),
+        message: "Failed to load account information",
+        type: "error",
+      });
+    }
+  }, [addBanner, error]);
+
   return (
     <li className="sw:flex sw:justify-center sw:items-center sw:max-w-[300px] sw:gap-2">
       <em className="swdc-if swdc-if--map-pin" />

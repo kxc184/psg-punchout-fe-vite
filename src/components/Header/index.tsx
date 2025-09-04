@@ -1,11 +1,9 @@
-import UtilityNav from "../UtilityNav";
 import MegaMenu from "../MegaMenu";
 import Search from "../Search";
 import MiniCart from "../Cart";
 import { AUTO_SUGGEST_CONFIG } from "../../lib/constants";
 // import HeaderMobile from "./HeaderMobile";
 import { Link } from "react-router";
-import Banner from "../Banner";
 
 const Header = () => {
   return (
@@ -13,16 +11,6 @@ const Header = () => {
       {/* screen sizes below md will show mobile version of header and hide desktop version, vise versa */}
       {/* <HeaderMobile /> */}
       <div className="sw:hidden sw:md:block headerContainer sw:w-full sw:mx-auto">
-        <UtilityNav />
-        {/* TODO: handle banner array */}
-        <Banner
-          error={{
-            id: 1,
-            blocking: false,
-            message: "Banner Description Here",
-            type: "warning",
-          }}
-        />
         <div className=" sw:w-full sw:bg-repeat sw:bg-center sw:bg-pro-primary sw:shadow-lg">
           <div className="sw:container sw:relative sw:max-w-[990px] sw:mx-auto">
             <div className="sw:flex sw:items-center sw:justify-start">
