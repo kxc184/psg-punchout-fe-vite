@@ -1,5 +1,6 @@
 import { transformMegaMenu } from "./transform";
 import { PROXY_SEARCH_ENDPOINT } from "../../lib/constants";
+import { HttpError } from "../HttpError";
 
 export interface IGeneralCategory {
   name: string;
@@ -19,6 +20,7 @@ export const fetchMegaMenu = async ({
   });
   if (!res.ok) {
     console.error("Error getting Mega Menu", await res.json());
+    throw new HttpError("Failed to fetch Mega Menu", res.status);
   }
 
   return transformMegaMenu(await res.json());

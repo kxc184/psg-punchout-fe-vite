@@ -1,13 +1,19 @@
 import ProductSuggestion from "./ProductSuggestion";
 import { AutoSuggestData } from "./hooks/useAutoSuggestApi";
+import ProductSuggestionLoading from "./productSuggestionLoading";
 
 const AutoSuggest = ({
   autoSuggestData,
+  loading,
   onCategoryClick,
 }: {
+  loading: boolean;
   autoSuggestData: AutoSuggestData;
   onCategoryClick: (term: string) => void;
 }) => {
+  if (loading) {
+    return <ProductSuggestionLoading />;
+  }
   return (
     <section
       className="AutoSuggestContainer sw:bg-white sw:w-full sw:absolute sw:top-[auto] sw:left-0 sw:z-[1000] swdc-typeset-ui-4b"

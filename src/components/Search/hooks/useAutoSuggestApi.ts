@@ -22,7 +22,7 @@ export function useAutoSuggestApi(query: string) {
     products: [],
   });
   const [showAutoSuggest, setShowAutoSuggest] = useState(false);
-  const { data, error } = useAutoSuggest(query, ctx!);
+  const { data, isLoading, error } = useAutoSuggest(query, ctx!);
 
   // Update autoSuggestData when data changes
   useEffect(() => {
@@ -40,5 +40,6 @@ export function useAutoSuggestApi(query: string) {
     setAutoSuggestData,
     showAutoSuggest,
     setShowAutoSuggest,
+    isLoading,
   };
 }

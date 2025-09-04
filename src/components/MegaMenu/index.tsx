@@ -8,7 +8,7 @@ import { useWscCtx } from "../../api/wcs/useWscCtx";
 const MegaMenu = () => {
   // Assume ctx and menu data are always present (guaranteed by layout)
   const { data: ctx } = useWscCtx();
-  const { data } = useMegaMenu(ctx!);
+  const { data, error } = useMegaMenu(ctx!);
   const [activeTopCategoryId, setActiveTopCategoryId] = useState<string | null>(
     null
   );
@@ -34,6 +34,12 @@ const MegaMenu = () => {
         clearHideTimeout(),
     []
   );
+
+  if (error) {
+    // Handle error state
+    console.error("Megamenu error:", error);
+    throw error;
+  }
 
   const clearHideTimeout = () => {
     if (hideTimeoutRef.current) {

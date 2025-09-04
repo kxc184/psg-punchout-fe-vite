@@ -11,7 +11,7 @@ import BannerBoundry from "../components/Banner/BannerBoundry";
 export default function Layout() {
   // Cache prime critical data for app
   const { data: ctx, isLoading: isLoadingCtx, error: errorCtx } = useWscCtx();
-  const { isLoading: isLoadingMenu } = useMegaMenu(ctx);
+  const { isLoading: isLoadingMenu, error: errorMenu } = useMegaMenu(ctx);
   const { isLoading: isLoadingAccount, error: errorAccount } = useAccount();
 
   // Full loading page for all critical data
@@ -20,7 +20,7 @@ export default function Layout() {
   }
 
   // TODO: Handle Auth more gracefully, maybe a redirect to ajaxlogin?
-  if (errorCtx || errorAccount) {
+  if (errorCtx || errorAccount || errorMenu) {
     throw new Error("Auth Error");
   }
 

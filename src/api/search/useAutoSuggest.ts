@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import fetchAutoSuggest from "./auto-suggest";
 import { IWcsCtx } from "../wcs";
+import { defaultRetry } from "../../lib/utils";
 
 export function useAutoSuggest(query: string, ctx: IWcsCtx | undefined) {
   return useQuery({
@@ -13,5 +14,6 @@ export function useAutoSuggest(query: string, ctx: IWcsCtx | undefined) {
       });
     },
     enabled: query.length >= 3 && !!ctx?.contractId && !!ctx?.organizationId,
+    retry: defaultRetry,
   });
 }

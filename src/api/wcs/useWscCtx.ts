@@ -6,6 +6,5 @@ export function useWscCtx() {
     queryKey: ["wscCtx"],
     queryFn: fetchWcsCtx,
     retry: false,
-    refetchOnWindowFocus: false,
   });
 }

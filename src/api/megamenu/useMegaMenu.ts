@@ -7,5 +7,6 @@ export function useMegaMenu(ctx: IWcsCtx | undefined) {
     queryKey: ["megamenu", { contractId: ctx?.contractId }],
     queryFn: () => fetchMegaMenu({ contractId: ctx!.contractId }),
     enabled: !!ctx?.contractId,
+    retry: false,
   });
 }
