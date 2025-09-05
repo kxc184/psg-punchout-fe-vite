@@ -2,7 +2,7 @@ import { FOOTER_LOGO_URL } from "../../lib/constants";
 const Footer = () => (
   <footer
     aria-label="footer"
-    className="sw:w-full sw:flex sw:justify-center sw:bg-neutral-85 swdc-typeset-ui-3 sw:pt-2 sw:pb-[120px]"
+    className="sw:w-full sw:flex sw:justify-center sw:bg-neutral-85 swdc-typeset-ui-3 sw:pt-2 sw:pb-1"
   >
     <div className="sw:container sw:mx-auto sw:max-w-[1440px] sw:py-8 sw:px-8">
       <div className="sw:flex sw:flex-row">

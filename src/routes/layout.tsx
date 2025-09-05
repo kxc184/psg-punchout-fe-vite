@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { useWscCtx } from "../api/wcs/useWscCtx";
 import { useAccount } from "../api/account/useAccount";
 import { useMegaMenu } from "../api/megamenu/useMegaMenu";
-import FullPageSkeleton from "./loading";
+import FullPageSkeleton from "./FullPageSkeleton";
 import UtilityNav from "../components/UtilityNav";
 import BannerBoundry from "../components/Banner/BannerBoundry";
 

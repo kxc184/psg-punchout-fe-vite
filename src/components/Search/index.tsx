@@ -32,6 +32,7 @@ const Search = ({ placeholder }: { placeholder?: string }) => {
 
   const handleSearchInput = (searchTerm: string) => {
     setSearchVal(searchTerm);
+    if (!showAutoSuggest) setShowAutoSuggest(true);
   };
 
   const clearSearch = () => {
@@ -53,7 +54,7 @@ const Search = ({ placeholder }: { placeholder?: string }) => {
   return (
     <div ref={searchContainerRef} className="sw:h-full sw:w-full sm:sw:px-4">
       <div className="sw:flex sw:items-center sw:w-full sw:h-full">
-        <div className="sw:w-full sw:bg-white  sw:h-[40px] sw:rounded-full sw:flex sw:items-center sw:gap-1">
+        <div className="sw:w-full sw:bg-white sw:max-w-[537px]  sw:h-[40px] sw:rounded-full sw:flex sw:items-center sw:gap-1">
           <input
             type="text"
             value={searchVal}

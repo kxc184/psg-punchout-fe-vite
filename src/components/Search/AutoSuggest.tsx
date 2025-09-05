@@ -1,6 +1,6 @@
 import ProductSuggestion from "./ProductSuggestion";
 import { AutoSuggestData } from "./hooks/useAutoSuggestApi";
-import ProductSuggestionLoading from "./productSuggestionLoading";
+import ProductSuggestionLoading from "./ProductSuggestionSkeleton";
 
 const AutoSuggest = ({
   autoSuggestData,
@@ -19,7 +19,7 @@ const AutoSuggest = ({
       className=" sw:shadow-lg sw:bg-white sw:w-full sw:absolute sw:top-[auto] sw:left-0 sw:z-[1000] swdc-typeset-ui-4b"
       aria-label="auto suggest"
     >
-      <div className="sw:h-full sw:grid sw:grid-cols-[1fr_3fr] md:sw:grid-cols-[256px_auto]">
+      <div className="sw:h-full sw:grid sw:grid-cols-[268px_auto]">
         <section
           className="categorySuggestions sw:p-2 sw:flex sw:flex-col sw:text-pro-secondary sw:my-1"
           aria-label="category suggestion"

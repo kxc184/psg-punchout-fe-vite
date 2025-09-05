@@ -1,5 +1,5 @@
 import { Component, ReactNode } from "react";
-import FullPageError from "../routes/error";
+import FullPageError from "../routes/Error";
 
 interface ErrorBoundaryProps {
   children: ReactNode;

@@ -15,7 +15,7 @@ const Header = () => {
               <picture>
                 <img
                   className="  sw:py-3 sw:object-fit "
-                  src="https://s7d1.scene7.com/is/image/sherwinwilliamsqa/sherwin-williams-header-logo?scl=1&fmt=png-alpha"
+                  src="/sherwin-williams-header-logo.png"
                   alt="Sherwin-Williams Logo"
                 />
               </picture>
