@@ -3,9 +3,9 @@ import { Link } from "react-router";
 const FullPageSkeleton = () => {
   return (
     <section className="sw:w-full sw:mx-auto sw:flex sw:flex-col sw:min-h-screen">
-      <div className="sw:h-[72px] sw:min-w-[990px] sw:max-w-[1440px] sw:animate-pulse "></div>
+      <div className="sw:h-[90px] sw:min-w-[1090px] sw:max-w-[1440px] sw:animate-pulse "></div>
       <div className="sw:hidden sw:md:block  sw:bg-pro-primary sw:text-white sw:py-[15px] sw:h-[183px] sw:animate-pulse">
-        <div className="sw:container sw:max-w-[990px] sw:mx-auto sw:flex sw:items-center sw:justify-between">
+        <div className="sw:container sw:max-w-[1090px] sw:mx-auto sw:flex sw:items-center sw:justify-between">
           <div className="sw:flex sw:flex-col sw:w-full  sw:mt-[-.9rem]">
             <Link to="/">
               <picture>
@@ -16,12 +16,12 @@ const FullPageSkeleton = () => {
                 />
               </picture>
             </Link>
-            <div className="  sw:h-[70px] sw:w-full sw:bg-[#001234] sw:flex "></div>
+            <div className="  sw:h-[90px] sw:w-full sw:bg-[#001234] sw:flex "></div>
           </div>
         </div>
       </div>
       <div className="sw:flex sw:flex-1 sw:flex-col sw:bg-gray-100 sw:animate-pulse">
-        <div className=" sw:container sw:mx-auto sw:w-[990px] sw:flex  sw:gap-2  ">
+        <div className=" sw:container sw:mx-auto sw:w-[1090px] sw:flex  sw:gap-2  ">
           <div className="sw:flex sw:gap-2">
             <div className="sw:w-[256px] sw:h-[424px] sw:bg-gray-300 sw:animate-pulse"></div>
           </div>

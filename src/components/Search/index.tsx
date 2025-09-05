@@ -31,7 +31,6 @@ const Search = ({ placeholder }: { placeholder?: string }) => {
   };
 
   const handleSearchInput = (searchTerm: string) => {
-    console.log("searchval", searchTerm);
     setSearchVal(searchTerm);
   };
 
@@ -45,7 +44,6 @@ const Search = ({ placeholder }: { placeholder?: string }) => {
     window.location.href = `${SEE_ALL_PRODUCTS_ROUTE}${encodedQuery}`;
   };
 
-  // Handler to instantly update both searchVal and debouncedSearchVal on category click
   const handleCategoryClick = (term: string) => {
     if (searchVal) {
       setSearchVal(term);

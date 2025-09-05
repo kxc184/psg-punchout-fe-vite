@@ -16,7 +16,7 @@ const AutoSuggest = ({
   }
   return (
     <section
-      className="AutoSuggestContainer sw:bg-white sw:w-full sw:absolute sw:top-[auto] sw:left-0 sw:z-[1000] swdc-typeset-ui-4b"
+      className=" sw:shadow-lg sw:bg-white sw:w-full sw:absolute sw:top-[auto] sw:left-0 sw:z-[1000] swdc-typeset-ui-4b"
       aria-label="auto suggest"
     >
       <div className="sw:h-full sw:grid sw:grid-cols-[1fr_3fr] md:sw:grid-cols-[256px_auto]">
@@ -32,7 +32,7 @@ const AutoSuggest = ({
                   className="sw:mb-2"
                 >
                   <button
-                    className=" sw:text-start"
+                    className=" sw:text-start swdc-link"
                     onClick={() => {
                       onCategoryClick(category.catent_product_name);
                     }}

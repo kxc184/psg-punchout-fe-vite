@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import MegaMenuMobile from "../MegaMenu/mobile/MegaMenuMobile";
+import MegaMenuMobile from "../MegaMenuClient/mobile/MegaMenuMobile";
 import MiniCart from "../Cart";
 import Search from "../Search";
 import { MenuIcon, XIcon } from "../ui/Icons";

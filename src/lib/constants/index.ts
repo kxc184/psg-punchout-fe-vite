@@ -7,6 +7,7 @@ export const SW_HOST = import.meta.env.VITE_SW_HOST;
 export const AEM_SCRIPTS_ENDPOINT = `${SW_HOST}/en-us/hclhead.customheaderlibs`;
 export const SEARCH_ENDPOINT = `${API_SW_HOST}/punchout-bff/mega-menu`;
 export const AUTOSUGGEST_ENDPOINT = `${API_SW_HOST}/punchout-bff/products/auto-suggestion`;
+export const HEADER_ENDPOINT = `${API_SW_HOST}/punchout-bff/header`;
 export const HCL_MINI_CART_ENDPOINT = `/wcs/resources/store/10701/cart/@self`;
 export const HCL_CONTEXT_ENDPOINT = `/wcs/resources/store/10701/usercontext/@self/contextdata`;
 export const HCL_ACCOUNT_ENDPOINT = `/wcs/resources/store/10701/sw/usercontext/@self/contextdata`;

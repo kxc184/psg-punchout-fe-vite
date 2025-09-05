@@ -1,29 +1,34 @@
-import { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router";
+import React, { useEffect, useRef, useState } from "react";
 import TopCategoryDisplay from "./TopCategoryDisplay";
 import clsx from "clsx";
+import { useLocation } from "react-router";
 import { useMegaMenu } from "../../api/megamenu/useMegaMenu";
 import { useWscCtx } from "../../api/wcs/useWscCtx";
 
-const MegaMenu = () => {
-  // Assume ctx and menu data are always present (guaranteed by layout)
+interface MegaMenuProps {
+  isStuck: boolean;
+}
+
+const MegaMenu = ({ isStuck }: MegaMenuProps) => {
   const { data: ctx } = useWscCtx();
   const { data, error } = useMegaMenu(ctx!);
+  const location = useLocation();
   const [activeTopCategoryId, setActiveTopCategoryId] = useState<string | null>(
     null
   );
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
   const [show, setShow] = useState(false);
   const [isHome, setIsHome] = useState(false);
-  const location = useLocation();
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const derivedShow =
+    (isHome && !isStuck) || // show when home
+    (isStuck && show) || // show when stuck and hovered
+    show; // fallback to hovered
 
   useEffect(() => {
-    // Show top categories only on the homepage ("/" or "/en-us").
-    // This app is mounted at "/en-us" via split origin, so we treat
-    // both as home routes for local development.
+    // Show top categories only on the homepage ("/" ).
     clearHideTimeout();
-    setIsHome(location.pathname === "/" || location.pathname === "/en-us");
+    setIsHome(location.pathname === "/");
   }, [location.pathname]);
 
   useEffect(
@@ -34,7 +39,6 @@ const MegaMenu = () => {
         clearHideTimeout(),
     []
   );
-
   if (error) {
     // Handle error state
     console.error("Megamenu error:", error);
@@ -67,28 +71,21 @@ const MegaMenu = () => {
     }, 500);
   };
 
-  // No loading or error UI here; handled by layout
-
   return (
     <nav
-      className=" sw:bg-[#001234] sw:text-white megaMenu"
+      className="sw:h-full sw:w-full sw:relative sw:flex sw:items-center swdc-typeset-ui-3b "
       onMouseEnter={() => setShow(true)}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="sw:h-[68px] sw:pl-[30px] sw:w-[256px] sw:flex sw:items-center sw:bg-[#001234]">
-        <p
-          className="sw:text-white sw:text-sm sw:w-full sw:text-[.875rem] sw:font-bold"
-          style={{ fontFamily: '"Frutiger Neue", sans-serif' }}
-        >
-          SHOP BY CATEGORY
-        </p>
-      </div>
+      <p className=" sw:text-white sw:pl-3">
+        {!isStuck ? "SHOP BY CATEGORY" : "SHERWIN-WILLIAMS"}
+      </p>
 
       <ul
         className={clsx(
-          "topCategories  sw:absolute sw:w-[256px] sw:min-h-[425px] sw:p-[15px] sw:pl-[30px] sw:flex sw:flex-col sw:bg-[#001234]",
+          "sw:shadow-lg sw:absolute sw:w-[268px] sw:min-h-[432px] sw:py-2 sw:pl-3 sw:left-0 sw:top-full sw:flex sw:flex-col sw:gap-2 sw:bg-[#001234] sw:rounded-b-md ",
           {
-            "sw:hidden": !show && !isHome,
+            "sw:hidden": !derivedShow,
           }
         )}
         onMouseLeave={handleMouseLeave}

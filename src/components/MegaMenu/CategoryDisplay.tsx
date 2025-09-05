@@ -1,7 +1,6 @@
 import React from "react";
 import clsx from "clsx";
 import { IGeneralCategory } from "../../api/megamenu";
-import { ArrowIcon } from "../ui/Icons";
 import SubCategoryDisplay from "./SubCategoryDisplay";
 
 interface Props {
@@ -20,30 +19,25 @@ const CategoryDisplay = ({
       const isActive = activeCategoryId === category.uniqueID;
       return (
         <React.Fragment key={category.uniqueID}>
-          <li
-            onMouseEnter={() => onMouseEnter(category.uniqueID, "category")}
-            className={clsx(
-              "sw:cursor-pointer sw:py-[13px] sw:pr-[15px] sw:pl-[30px] sw:relative",
-              {
-                "sw:hover:underline active-icon":
-                  isActive && category.categories.length > 0,
-              },
-            )}
-          >
+          <li className="sw:pl-3">
             <a
-              href={category.href}
-              className={clsx(
-                "sw:inline sw:relative sw:cursor-pointer sw:text-[#979797] sw:leading-normal sw:font-semibold sw:hover:text-white",
-                { "sw:text-white": isActive },
-              )}
+              href={category.href || "#"}
+              onMouseEnter={() => onMouseEnter(category.uniqueID, "category")}
+              className={clsx(" swdc-link", {
+                "sw:!text-white hover:sw:!text-white": isActive,
+                "sw:!text-white/80": !isActive,
+              })}
             >
               {category.name}
-              {category.categories.length > 0 && <ArrowIcon />}
+              {category.categories.length > 0 && (
+                <em className="swdc-if swdc-if--caret-right swdc-icon-[20px] sw:font-bold" />
+              )}
             </a>
           </li>
+
           <div
             className={clsx(
-              "sw:overflow-hidden sw:w-full",
+              "sw:overflow-hidden sw:w-full sw:transition sw:duration-1000",
               isActive ? "sw:max-h-[500px]" : "sw:max-h-0",
             )}
           >

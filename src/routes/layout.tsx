@@ -31,7 +31,7 @@ export default function Layout() {
       <UtilityNav />
       <BannerBoundry />
       <Header />
-      <section className="sw:bg-[#eee] sw:container sw:max-w-[990px] sw:mx-auto sw:flex sw:flex-col sw:flex-grow sw:flex-1 sw:h-full">
+      <section className="sw:bg-[#eee] sw:container sw:max-w-[1090px] sw:mx-auto sw:flex sw:flex-col sw:flex-grow sw:flex-1 sw:h-full">
         <Body />
       </section>
       <Footer />
