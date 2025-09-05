@@ -2,45 +2,52 @@ import { HttpResponse, http } from "msw";
 
 export const mockSuccessfulHeaderResponse = {
   tradingPartner: {
-    accountNumber: "6559-0247-6",
-    name: "3M",
+    accountNumber: "2791-2298-0",
+    name: "WOODCREEK",
   },
   store: {
-    number: "703221",
-    phone: "(715) 835-4323",
-    name: "EAU CLAIRE",
-    hours: "7:00 AM - 6:00 PM",
+    address: "18836 State Highway 305 Ne",
+    city: "Poulsbo",
+    zip: "98370-6234",
+    state: "WA",
+    country: "USA",
+    number: "701856",
+    phone: "(360) 598-1717",
+    name: "Poulsbo",
+    openHours: "7:00 AM - 6:00 PM",
   },
   links: [
     {
       name: "quickOrder",
       label: "Quick Order",
       enabled: true,
-      href: "link",
+      href: "/QuickOrderView?catalogId=10551&storeId=10701&langId=-1",
     },
     {
       name: "myQuotes",
-      label: "My Quotes",
-      enabled: true,
-      href: "link",
+      label: null,
+      enabled: false,
+      href: null,
     },
     {
       name: "orderHistory",
       label: "Order History",
       enabled: true,
-      href: "link",
+      href: "/TrackOrderStatus?catalogId=10551&storeId=10701&langId=-1&showOrderHeader=false&orderStatusStyle=strong",
     },
     {
-      name: "pickupLocations",
-      label: "Pickup Locations",
+      name: "pickLocation",
+      label: null,
+      enabled: false,
+      href: null,
+    },
+    {
+      name: "backToLocationSelection",
+      label: "Back to Location Selection",
       enabled: true,
-      href: "link",
+      href: "/RestoreOriginalUserSetInSession?catalogId=10551&storeId=10701&langId=-1&URL=SWAdminPunchoutGetLocations",
     },
   ],
-  cart: {
-    quantity: "2",
-    totalPrice: "100",
-  },
 };
 export const mockEmptyLinkHeaderResponse = {
   ...mockSuccessfulHeaderResponse,
@@ -80,8 +87,8 @@ const headerHandlers = [
         { ...mockSuccessfulHeaderResponse },
         {
           status: 200,
-        },
-      ),
+        }
+      )
   ),
 ];
 

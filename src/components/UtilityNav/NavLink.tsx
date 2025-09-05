@@ -1,19 +1,6 @@
-type TNavLinkName =
-  | "quickOrder"
-  | "myQuotes"
-  | "orderHistory"
-  | "pickupLocations";
-export interface INavLink {
-  name: TNavLinkName;
-  label: string;
-  enabled: boolean;
-  href: string;
-}
-export interface NavLinkProps {
-  link: INavLink;
-}
+import { NavLinkProps } from "../../api/header/types";
 
-const LINK = {
+const LINK_ICON: Record<string, { icon: string }> = {
   quickOrder: {
     icon: "notepad",
   },
@@ -29,7 +16,7 @@ const LINK = {
 };
 
 const NavLink = ({ link }: NavLinkProps) => {
-  const { icon } = LINK[link.name];
+  const icon = LINK_ICON[link.name]?.icon;
   return (
     <li className="sw:flex sw:items-center ">
       <a
@@ -37,9 +24,11 @@ const NavLink = ({ link }: NavLinkProps) => {
         href={link.href}
         aria-label={`Go to ${link.label} page`}
       >
-        <em
-          className={`swdc-if swdc-if--${icon} sw:text-primary swdc-icon-1`}
-        ></em>
+        {icon && (
+          <em
+            className={`swdc-if swdc-if--${icon} sw:text-primary swdc-icon-1`}
+          ></em>
+        )}
         {link.label}
       </a>
     </li>

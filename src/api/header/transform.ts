@@ -15,10 +15,16 @@ export const transformHeader = (data: ISuccessfulHeaderResponseApi) => {
     name: data.tradingPartner?.name,
     accountNumber: formattedAccountNumber,
   };
+  const locationSelectionLink = data.links.find(
+    (link) => link.name === "backToLocationSelection"
+  );
+  const links = data.links.filter(
+    (link) => link.name !== "backToLocationSelection"
+  );
   return {
     tradingPartner: tradingPartnerData,
     store: data.store,
-    links: data.links,
-    cart: data.cart,
+    links: links,
+    locationSelectionLink,
   };
 };

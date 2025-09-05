@@ -1,22 +1,19 @@
 import React from "react";
 import TradingPartnerInfo from "./TradingPartnerInfo";
 import StoreInfo from "./StoreInfo";
-import NavLink, { INavLink } from "./NavLink";
+import NavLink from "./NavLink";
 import Divider from "./Divider";
 import { useHeaderApi } from "../../api/header/useHeaderApi";
+import { INavLink } from "@/api/header/types";
 
-export interface IUtilityNav {
-  locationSelectionUrl?: boolean;
-}
-
-const UtilityNav = ({ locationSelectionUrl = false }: IUtilityNav) => {
+const UtilityNav = () => {
   // TODO: Fix error states
   const { data, isLoading, error } = useHeaderApi();
   if (isLoading) return <div className="sw:min-h-[80px] ">Loading...</div>;
   if (error) return <div className="sw:min-h-[80px] ">Error...</div>;
   // if (error) throw new Error("Error loading header data");
 
-  const { tradingPartner, store, links } = data!;
+  const { tradingPartner, store, links, locationSelectionLink } = data!;
   const cmcLinks = links
     .filter((link) => link.enabled)
     .map((link, i, links) => (
@@ -40,14 +37,14 @@ const UtilityNav = ({ locationSelectionUrl = false }: IUtilityNav) => {
         <ul className="sw:flex sw:items-center  sw:py-1 sw:gap-1">
           {cmcLinks}
         </ul>
-        {locationSelectionUrl && (
+        {locationSelectionLink?.enabled && (
           <a
-            href="#"
+            href={locationSelectionLink?.href}
             className="sw:flex sw:ml-2 sw:justify-center sw:items-center sw:self-center swdc-button swdc-button--outlined swdc-button--sm swdc-typeset-button-3"
             aria-label="Back to location selection"
           >
             <em className="swdc-if swdc-if--caret-left" aria-hidden="true" />
-            location selection
+            Location Selection
           </a>
         )}
       </div>
