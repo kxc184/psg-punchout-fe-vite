@@ -1,4 +1,4 @@
-import UtilityNavSkeleton from "../components/UtilityNav/loading";
+import UtilityNavSkeleton from "../components/UtilityNav/UtilityNavSkeleton";
 import HeaderSkeleton from "../components/Header/HeaderSkeleton";
 import Footer from "../components/Footer";
 
