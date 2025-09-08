@@ -2,13 +2,13 @@
 import { Link } from "react-router";
 // import HeaderMobile from "./HeaderMobile";
 import UtilityNav from "../UtilityNav";
-import BannerBoundry from "../Banner/BannerBoundry";
+import BannerBoundary from "../Banner/BannerBoundary";
 
 const Header = () => {
   return (
     <header>
       <UtilityNav />
-      <BannerBoundry />
+      <BannerBoundary />
       {/* screen sizes below md will show mobile version of header and hide desktop version, vise versa */}
       {/* <HeaderMobile miniCartData={miniCartData} megaMenuData={megaMenuData} /> */}
       <section className="sw:hidden sw:md:block sw:w-full sw:mx-auto">
