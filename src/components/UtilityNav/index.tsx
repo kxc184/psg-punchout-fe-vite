@@ -5,11 +5,12 @@ import NavLink from "./NavLink";
 import Divider from "./Divider";
 import { useHeaderApi } from "../../api/header/useHeaderApi";
 import { INavLink } from "@/api/header/types";
+import UtilityNavSkeleton from "./UtilityNavSkeleton";
 
 const UtilityNav = () => {
   // TODO: Fix error states
   const { data, isLoading, error } = useHeaderApi();
-  if (isLoading) return <div className="sw:min-h-[80px] ">Loading...</div>;
+  if (isLoading) return <UtilityNavSkeleton />;
   if (error) return <div className="sw:min-h-[80px] ">Error...</div>;
 
   const { tradingPartner, store, links, locationSelectionLink } = data!;

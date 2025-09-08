@@ -28,9 +28,11 @@ export default function Layout() {
     <main
       className={`sw:grid sw:grid-rows-[auto_1fr_auto] sw:min-h-screen sw:bg-white`}
     >
-      <UtilityNav />
-      <BannerBoundry />
-      <Header />
+      <header>
+        <UtilityNav />
+        <BannerBoundry />
+        <Header />
+      </header>
       <section className="sw:container sw:max-w-[1090px] sw:mx-auto">
         <Body />
       </section>

@@ -4,7 +4,7 @@ const StoreInfo = ({ store }: { store: IStoreInfo }) => {
   // TODO: Failed state
   if (!store) return null;
 
-  const { name, phone, hours, number } = store;
+  const { name, phone, openHours, number } = store;
   return (
     <li className="sw:flex swdc-link">
       <a className="sw:flex sw:gap-2 sw:items-center " href="#">
@@ -13,7 +13,7 @@ const StoreInfo = ({ store }: { store: IStoreInfo }) => {
           <span className="sw:whitespace-nowrap ">
             <p className="swdc-typeset-ui-4b">{`${name} #${number}`}</p>
             <p className="swdc-typeset-ui-5 sw:opacity-75">{phone}</p>
-            <p className="swdc-typeset-ui-5 sw:opacity-75">{hours}</p>
+            <p className="swdc-typeset-ui-5 sw:opacity-75">{openHours}</p>
           </span>
         </div>
       </a>

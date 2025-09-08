@@ -175,7 +175,7 @@ const hclHandlers = [
   http.get(
     "/wcs/resources/store/10701/usercontext/@self/contextdata",
     async () => {
-      await delay(2000); // 2 seconds
+      await delay(1000); // 2 seconds
       return HttpResponse.json({ ...hclContextResponse }, { status: 200 });
     }
   ),
