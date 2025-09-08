@@ -1,7 +1,7 @@
 import Banner from ".";
 import { useBannerStore } from "../../lib/store/bannerStore";
 
-const BannerBoundry = () => {
+const BannerBoundary = () => {
   const banners = useBannerStore((state) => state.banners);
   //   No empty bannerstate
   if (!banners.length) {
@@ -43,4 +43,4 @@ const BannerBoundry = () => {
   );
 };
 
-export default BannerBoundry;
+export default BannerBoundary;

@@ -1,3 +1,18 @@
+/*
+  LAYOUT GRID ROWS EXPLANATION:
+
+  grid-rows-[auto_auto_auto_1fr_auto] is used because:
+    1. Header
+    2. StickyNav (which includes a sentinel for Intersection Observer sticky logic)
+    3. [Sentinel] (invisible, but required for JS sticky detection)
+    4. Body section (fills remaining space, 1fr)
+    5. Footer
+
+  NOTE: The sentinel is required for sticky JS logic and must remain in the document flow.
+  Changing the number/order of grid rows or moving StickyNav/sentinel may break sticky behavior.
+  This is a known layout complexity—do not refactor without understanding the sticky requirements!
+*/
+
 import { Outlet as Body } from "react-router";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -5,8 +20,8 @@ import { useWscCtx } from "../api/wcs/useWscCtx";
 import { useAccount } from "../api/account/useAccount";
 import { useMegaMenu } from "../api/megamenu/useMegaMenu";
 import FullPageSkeleton from "./FullPageSkeleton";
-import UtilityNav from "../components/UtilityNav";
-import BannerBoundry from "../components/Banner/BannerBoundry";
+
+import StickyNav from "../components/Header/StickyNav";
 
 export default function Layout() {
   // Cache prime critical data for app
@@ -26,13 +41,10 @@ export default function Layout() {
 
   return (
     <main
-      className={`sw:grid sw:grid-rows-[auto_1fr_auto] sw:min-h-screen sw:bg-white`}
+      className={`sw:grid sw:grid-rows-[auto_auto_auto_1fr_auto] sw:min-h-screen sw:bg-white`}
     >
-      <header>
-        <UtilityNav />
-        <BannerBoundry />
-        <Header />
-      </header>
+      <Header />
+      <StickyNav />
       <section className="sw:container sw:max-w-[1090px] sw:mx-auto">
         <Body />
       </section>
