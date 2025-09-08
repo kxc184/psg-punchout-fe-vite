@@ -7,7 +7,7 @@ const SkeletonIcon = () => (
 );
 
 const UtilityNavSkeleton = () => (
-  <div className="sw:container sw:min-h-[80px] sw:min-w-[1090px] sw:max-w-[1440px] sw:bg-white sw:px-8 sw:flex sw:justify-between">
+  <div className="sw:container sw:mx-auto sw:min-h-[80px] sw:min-w-[1090px] sw:max-w-[1440px] sw:bg-white sw:px-8 sw:flex sw:justify-between">
     <ul className="sw:flex sw:w-full sw:justify-center sw:items-center sw:gap-4">
       <li className="sw:flex sw:justify-center sw:items-center sw:gap-2">
         <SkeletonIcon />

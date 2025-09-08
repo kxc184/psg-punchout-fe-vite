@@ -26,12 +26,12 @@ export default function Layout() {
 
   return (
     <main
-      className={` sw:flex sw:min-h-screen sw:h-full sw:flex-col sw:items-center sw:bg-white`}
+      className={`sw:grid sw:grid-rows-[auto_1fr_auto] sw:min-h-screen sw:bg-white`}
     >
       <UtilityNav />
       <BannerBoundry />
       <Header />
-      <section className="sw:bg-[#eee] sw:container sw:max-w-[1090px] sw:mx-auto sw:flex sw:flex-col sw:flex-grow sw:flex-1 sw:h-full">
+      <section className="sw:container sw:max-w-[1090px] sw:mx-auto">
         <Body />
       </section>
       <Footer />

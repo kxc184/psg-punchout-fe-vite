@@ -11,7 +11,6 @@ const UtilityNav = () => {
   const { data, isLoading, error } = useHeaderApi();
   if (isLoading) return <div className="sw:min-h-[80px] ">Loading...</div>;
   if (error) return <div className="sw:min-h-[80px] ">Error...</div>;
-  // if (error) throw new Error("Error loading header data");
 
   const { tradingPartner, store, links, locationSelectionLink } = data!;
   const cmcLinks = links
