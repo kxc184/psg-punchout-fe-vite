@@ -1,15 +1,15 @@
+"use client";
 import "./styles.scss";
 import { useState } from "react";
 import TopCategoryDisplayMobile from "./TopCategoryDisplayMobile";
 
 import UtilityNavMobile from "../../UtilityNav/UtilityNavMobile";
+import { IGeneralCategory } from "../../../api/megamenu";
 import clsx from "clsx";
 import CategoryDisplayMobile from "./CategoryDisplayMobile";
-import { ArrowWThickIcon } from "../../../components/ui/Icons";
-import { useMenuStore } from "@/store/useMenuStore";
+import { ArrowWThickIcon } from "../../ui/Icons";
 
-const MegaMenuMobile = () => {
-  const data = useMenuStore((state) => state.menu);
+const MegaMenuMobile = ({ data }: { data: IGeneralCategory[] | [] }) => {
   const [activeTopCategoryId, setActiveTopCategoryId] = useState<string | null>(
     null
   );
@@ -45,7 +45,7 @@ const MegaMenuMobile = () => {
           "menu-items sw:block sw:h-full sw:bg-[#333] sw:p-[15px] sw:text-[14px]"
         )}
       >
-        {data?.map((topCategory) => (
+        {data.map((topCategory) => (
           <TopCategoryDisplayMobile
             key={topCategory.uniqueID}
             topCategory={topCategory}

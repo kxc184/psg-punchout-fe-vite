@@ -1,5 +1,5 @@
 import { IGeneralCategory } from "../../../api/megamenu";
-import { ArrowIcon } from "../../../components/ui/Icons";
+import { ArrowIcon } from "../../ui/Icons";
 import clsx from "clsx";
 import React from "react";
 

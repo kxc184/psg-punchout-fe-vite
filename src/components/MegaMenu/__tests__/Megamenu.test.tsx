@@ -1,6 +1,6 @@
 import MegaMenu from "..";
 import userEvent from "@testing-library/user-event";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 // Mock a small menu to make testing functionality easier
@@ -8,6 +8,7 @@ const smallMenu = [
   {
     name: "General Industrial",
     uniqueID: "67001",
+    href: "/CategoryDisplay?storeId=10701&catalogId=10551&urlLangId=-1&langId=-1&pageView=grid&categoryId=67001",
     categories: [
       {
         name: "Solvent Coatings",
@@ -22,7 +23,6 @@ const smallMenu = [
         href: "/CategoryDisplay?storeId=10701&catalogId=10551&urlLangId=-1&langId=-1&pageView=grid&top_category=67001&categoryId=67006",
       },
     ],
-    href: "/CategoryDisplay?storeId=10701&catalogId=10551&urlLangId=-1&langId=-1&pageView=grid&categoryId=67001",
   },
 ];
 
@@ -34,32 +34,35 @@ vi.mock("next/navigation", () => ({
   },
 }));
 
-describe.skip("Megamenu", () => {
+describe("Megamenu", () => {
   it("should render", async () => {
     mockUsePathname.mockImplementation(() => "/");
-    render(<MegaMenu megaMenuData={smallMenu} />);
+    render(<MegaMenu data={smallMenu} isStuck={false} />);
 
     // ✅ find megamenu
-    expect(await screen.findByText(/shop by category/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/SHOP BY CATEGORY|SHERWIN-WILLIAMS/i),
+    ).toBeInTheDocument();
 
     // ✅ find megamenu topcatagories
     expect(
-      await screen.findByRole("link", { name: /general industrial/i }),
+      screen.getByRole("link", { name: /general industrial/i }),
     ).toBeInTheDocument();
   });
   it("should render all catagories when hover", async () => {
     mockUsePathname.mockImplementation(() => "/");
     const user = userEvent.setup();
-    render(<MegaMenu megaMenuData={smallMenu} />);
+    render(<MegaMenu data={smallMenu} isStuck={false} />);
 
     // ✅ hover over top category find category
-    const topcategory = await screen.findByRole("link", {
-      name: /General Industrial >/i,
+    const topCategory = screen.getByRole("link", {
+      name: /general industrial/i,
     });
-    const category = await screen.findByRole("link", {
-      name: /Solvent Coatings >/i,
+
+    const category = screen.getByRole("link", {
+      name: /solvent coatings/i,
     });
-    await user.hover(topcategory);
+    await user.hover(topCategory);
     expect(category).toBeInTheDocument();
 
     // ✅  hover over catagory find subcategory
@@ -69,35 +72,14 @@ describe.skip("Megamenu", () => {
     });
     expect(subcategory).toBeInTheDocument();
   });
-  it("should not show menu when path is no at root", async () => {
-    mockUsePathname.mockImplementation(() => "");
-    const user = userEvent.setup();
-    render(<MegaMenu megaMenuData={smallMenu} />);
 
-    const topcategories = screen.getByRole("list", { name: "top categories" });
-    expect(topcategories).toHaveClass("sw:hidden");
-
-    // ✅ hover over megamenu to show topcategories
-    const megamenu = screen.getByText(/shop by category/i);
-    await user.hover(megamenu);
-    expect(topcategories).not.toHaveClass("sw:hidden");
-
-    // ✅ unhover and verifiy topcategories is hidden
-    await user.unhover(megamenu);
-    await waitFor(
-      () => {
-        expect(topcategories).toHaveClass("sw:hidden");
-      },
-      { timeout: 500 },
-    );
-  });
   it("should click on menu items", async () => {
     mockUsePathname.mockImplementation(() => "/");
-    render(<MegaMenu megaMenuData={smallMenu} />);
+    render(<MegaMenu data={smallMenu} isStuck={false} />);
 
     // ✅ find link with expected generated href
-    const link = await screen.findByRole("link", {
-      name: /General Industrial >/i,
+    const link = screen.getByRole("link", {
+      name: /general industrial/i,
     });
 
     expect(link).toHaveAttribute(

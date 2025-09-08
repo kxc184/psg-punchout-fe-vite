@@ -1,44 +1,42 @@
 import { render, screen, within } from "@testing-library/react";
-import { expect, it, describe } from "vitest";
+import { expect, it, describe, vi } from "vitest";
 import UtilityNav from "..";
+import * as headerApi from "@/api/header";
+import {
+  mockEmptyLinkHeaderResponse,
+  mockSuccessfulHeaderResponse,
+} from "@/mocks/handlers/header-handlers";
+import { successfulHeaderResponseApi } from "@/api/header/types";
 
 describe("Utility Nav", () => {
-  const account = {
-    orgEntityDisplayName: "WOODCREEK",
-    accountNumber: "2524-3595-3",
-  };
-  const store = {
-    name: "POULSBO #701856",
-    phone: "(745) 202-1274",
-    hours: "7:00 AM - 5:00 PM",
-  };
-
-  const renderUtilityNav = (props = {}) =>
-    render(<UtilityNav account={account} store={store} {...props} />);
-
+  const renderUtilityNav = async (props = { locationSelectionUrl: true }) =>
+    render(await UtilityNav(props));
   const expectCommonElements = () => {
     // ✅ Account info
-    expect(screen.getByText(/woodcreek/i)).toBeInTheDocument();
+    expect(screen.getByText(/3M/i)).toBeInTheDocument();
     const navigation = screen.getByRole("navigation", {
       name: /desktop utility navigation/i,
     });
     expect(
-      within(navigation).getByText(/account: 2524-3595-3/i),
+      within(navigation).getByText(/account: 6559-0247-6/i),
     ).toBeInTheDocument();
-    // ✅ store info
+    // ✅ store name
     expect(
       screen.getByRole("link", {
-        name: /poulsbo #701856 \(745\) 202-1274 7:00 am - 5:00 pm/i,
+        name: /EAU CLAIRE /i,
       }),
     ).toBeInTheDocument();
+    // ✅ store phone
+    expect(screen.getByText(/\(715\) 835-4323/i)).toBeInTheDocument();
+    // ✅ store time
+    expect(screen.getByText(/7:00 am - 6:00 pm/i)).toBeInTheDocument();
   };
 
-  it("should render with all links", () => {
-    renderUtilityNav({
-      quickOrderUrl: "/#",
-      orderHistoryUrl: "/#",
-      locationSelectionUrl: "/#",
-    });
+  it("should render with all links", async () => {
+    vi.spyOn(headerApi, "getHeaderData").mockResolvedValue(
+      mockSuccessfulHeaderResponse as successfulHeaderResponseApi,
+    );
+    await renderUtilityNav();
 
     expectCommonElements();
     // ✅ quick order
@@ -47,7 +45,15 @@ describe("Utility Nav", () => {
     ).toBeInTheDocument();
     // ✅ order history
     expect(
-      screen.getByRole("link", { name: /view your order history/i }),
+      screen.getByRole("link", { name: /go to order history page/i }),
+    ).toBeInTheDocument();
+    // ✅ my quotes
+    expect(
+      screen.getByRole("link", { name: /go to my quotes page/i }),
+    ).toBeInTheDocument();
+    // ✅ pickup locations
+    expect(
+      screen.getByRole("link", { name: /go to pickup locations page/i }),
     ).toBeInTheDocument();
     // ✅ Back to location selection
     expect(
@@ -55,8 +61,11 @@ describe("Utility Nav", () => {
     ).toBeInTheDocument();
   });
 
-  it("should not render optional links if not provided", () => {
-    renderUtilityNav();
+  it("should not render optional links if not provided", async () => {
+    vi.spyOn(headerApi, "getHeaderData").mockResolvedValue(
+      mockEmptyLinkHeaderResponse as successfulHeaderResponseApi,
+    );
+    await renderUtilityNav({ locationSelectionUrl: false });
     expectCommonElements();
     // ❌ quick order
     expect(
@@ -64,7 +73,15 @@ describe("Utility Nav", () => {
     ).not.toBeInTheDocument();
     // ❌ order history
     expect(
-      screen.queryByRole("link", { name: /view your order history/i }),
+      screen.queryByRole("link", { name: /go to order history page/i }),
+    ).not.toBeInTheDocument();
+    // ❌ my quotes
+    expect(
+      screen.queryByRole("link", { name: /go to my quotes page/i }),
+    ).not.toBeInTheDocument();
+    // ❌ pickup locations
+    expect(
+      screen.queryByRole("link", { name: /go to pickup locations page/i }),
     ).not.toBeInTheDocument();
     // ❌ Back to location selection
     expect(

@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { useWscCtx } from "../api/wcs/useWscCtx";
 import { useAccount } from "../api/account/useAccount";
 import { useMegaMenu } from "../api/megamenu/useMegaMenu";
-import FullPageSkeleton from "./loading";
+import FullPageSkeleton from "./FullPageSkeleton";
 import UtilityNav from "../components/UtilityNav";
 import BannerBoundry from "../components/Banner/BannerBoundry";
 
@@ -26,12 +26,14 @@ export default function Layout() {
 
   return (
     <main
-      className={` sw:flex sw:min-h-screen sw:h-full sw:flex-col sw:items-center sw:bg-white`}
+      className={`sw:grid sw:grid-rows-[auto_1fr_auto] sw:min-h-screen sw:bg-white`}
     >
-      <UtilityNav />
-      <BannerBoundry />
-      <Header />
-      <section className="sw:bg-[#eee] sw:container sw:max-w-[990px] sw:mx-auto sw:flex sw:flex-col sw:flex-grow sw:flex-1 sw:h-full">
+      <header>
+        <UtilityNav />
+        <BannerBoundry />
+        <Header />
+      </header>
+      <section className="sw:container sw:max-w-[1090px] sw:mx-auto">
         <Body />
       </section>
       <Footer />

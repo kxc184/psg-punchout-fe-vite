@@ -6,12 +6,12 @@ interface Props {
 }
 
 const SubCategoryDisplay = ({ subcategories }: Props) => (
-  <ul className="sw:mt-[15px] sw:pr-[15px] sw:pl-[30px] sw:w-full sw:flex sw:flex-col sw:bg-black/20">
+  <ul className=" sw:pl-3 sw:py-1 sw:w-full  sw:flex sw:flex-col sw:gap-1 sw:bg-black/30">
     {subcategories.map((sub) => (
-      <li key={sub.uniqueID} className="sw:py-[13px]">
+      <li key={sub.uniqueID} className="">
         <a
           href={sub.href}
-          className="sw:text-[#979797] sw:hover:text-white sw:font-semibold"
+          className="swdc-link sw:!text-white/80 sw:hover:!text-white"
         >
           {sub.name}
         </a>

@@ -1,4 +1,4 @@
-import { IAccountInfo } from "@/components/UtilityNav/AccountInfo";
+import { IAccountInfo } from "@/components/UtilityNavClient/AccountInfo";
 
 export const transformAccountData = (data: IAccountInfo) => {
   // Reformat account number to XXX-XXXX-XXX

@@ -1,88 +1,53 @@
 import React from "react";
-import AccountInfo from "./AccountInfo";
+import TradingPartnerInfo from "./TradingPartnerInfo";
 import StoreInfo from "./StoreInfo";
-import UtilityNavLink from "./UtilityNavLink";
+import NavLink from "./NavLink";
+import Divider from "./Divider";
+import { useHeaderApi } from "../../api/header/useHeaderApi";
+import { INavLink } from "@/api/header/types";
+import UtilityNavSkeleton from "./UtilityNavSkeleton";
 
 const UtilityNav = () => {
-  const store = {
-    name: "POULSBO #701856",
-    phone: "(745) 202-1274",
-    hours: "7:00 AM - 5:00 PM",
-  };
-  const quickOrderUrl = "/#";
-  const orderHistoryUrl = "/#";
-  const locationSelectionUrl = "/#";
-  const cmcLinks = [
-    quickOrderUrl && (
-      <UtilityNavLink
-        key="quickOrder"
-        icon="notepad"
-        href={quickOrderUrl}
-        ariaLabel="Go to Quick Order page"
-      >
-        Quick Order
-      </UtilityNavLink>
-    ),
-    orderHistoryUrl && (
-      <UtilityNavLink
-        key="orderHistory"
-        icon="clock"
-        href={orderHistoryUrl}
-        ariaLabel="View your order history"
-      >
-        Order History
-      </UtilityNavLink>
-    ),
-  ]
-    // Removes all nullish values from list then maps through and adds dividers for utility nav
-    .filter(Boolean)
-    .map((link, idx, arr) => (
-      <React.Fragment key={idx}>
-        {link}
-        {idx < arr.length - 1 && (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1"
-            height="56"
-            viewBox="0 0 1 56"
-            fill="none"
-            style={{ alignSelf: "center" }}
-          >
-            <g opacity="0.25">
-              <line x1="0.5" y1="56" x2="0.5" y2="0" stroke="#2F2F30" />
-            </g>
-          </svg>
-        )}
+  // TODO: Fix error states
+  const { data, isLoading, error } = useHeaderApi();
+  if (isLoading) return <UtilityNavSkeleton />;
+  if (error) return <div className="sw:min-h-[80px] ">Error...</div>;
+
+  const { tradingPartner, store, links, locationSelectionLink } = data!;
+  const cmcLinks = links
+    .filter((link) => link.enabled)
+    .map((link, i, links) => (
+      <React.Fragment key={link.name}>
+        <NavLink link={link as INavLink} />
+        {/* DO not render last link's divider */}
+        {i < links.length - 1 && <Divider />}
       </React.Fragment>
     ));
 
   return (
     <nav
-      className="sw:hidden sw:md:flex sw:container sw:min-w-[990px] sw:max-w-[1440px] sw:bg-white sw:px-8 sw:mx-auto sw:text-primary  sw:justify-between"
+      className="sw:container sw:min-h-[80px] sw:min-w-[1090px] sw:max-w-[1440px] sw:bg-white sw:px-8 sw:mx-auto sw:text-primary sw:flex sw:justify-between"
       aria-label="Desktop utility navigation"
     >
-      <div className="sw:flex sw:justify-center sw:items-center sw:gap-4">
-        <AccountInfo />
-        <StoreInfo name={store.name} phone={store.phone} hours={store.hours} />
-      </div>
-      <ul className="sw:flex sw:items-center sw:py-1 sw:gap-2">
-        {cmcLinks}
-        {locationSelectionUrl && (
-          <li
-            key="location"
-            className="sw:flex sw:items-center sw:justify-center"
-          >
-            <a
-              href={locationSelectionUrl}
-              className="sw:flex sw:justify-center sw:items-center swdc-button swdc-button--outlined swdc-button--sm"
-              aria-label="Back to location selection"
-            >
-              <em className="swdc-if swdc-if--caret-left" aria-hidden="true" />
-              location selection
-            </a>
-          </li>
-        )}
+      <ul className="sw:flex sw:justify-center sw:items-center sw:gap-4">
+        <TradingPartnerInfo tradingPartner={tradingPartner} />
+        <StoreInfo store={store} />
       </ul>
+      <div className="sw:flex">
+        <ul className="sw:flex sw:items-center  sw:py-1 sw:gap-1">
+          {cmcLinks}
+        </ul>
+        {locationSelectionLink?.enabled && (
+          <a
+            href={locationSelectionLink?.href}
+            className="sw:flex sw:ml-2 sw:justify-center sw:items-center sw:self-center swdc-button swdc-button--outlined swdc-button--sm swdc-typeset-button-3"
+            aria-label="Back to location selection"
+          >
+            <em className="swdc-if swdc-if--caret-left" aria-hidden="true" />
+            Location Selection
+          </a>
+        )}
+      </div>
     </nav>
   );
 };

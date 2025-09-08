@@ -8,7 +8,7 @@ const ProductSuggestion = ({
 }) => {
   return (
     <section
-      className="productSuggestions sw:p-2 sw:border-1 sw:border-solid sw:border-[#e5e5e5] sw:border-t-0"
+      className=" sw:p-2 sw:border-1 sw:border-solid sw:border-[#e5e5e5] sw:border-t-0"
       aria-label="product suggestion"
     >
       {autoSuggestData.numberResults === 0 ? (

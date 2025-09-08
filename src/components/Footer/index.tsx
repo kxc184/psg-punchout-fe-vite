@@ -4,7 +4,7 @@ const Footer = () => (
     aria-label="footer"
     className="sw:w-full sw:flex sw:justify-center sw:bg-neutral-85 swdc-typeset-ui-3 sw:pt-2 sw:pb-1"
   >
-    <div className="sw:container sw:mx-auto sw:max-w-[1440px] sw:p-8 sw:pr-5">
+    <div className="sw:container sw:mx-auto sw:max-w-[1440px] sw:py-8 sw:px-8">
       <div className="sw:flex sw:flex-row">
         <picture>
           <img
@@ -30,7 +30,7 @@ const Footer = () => (
                 punchout@sherwin-williams.com
               </a>
             </p>
-            <p>{`©${new Date().getFullYear()} The Sherwin-Williams Company`}</p>
+            <p>©2025 The Sherwin-Williams Company</p>
           </div>
         </li>
         <li className="sw:w-1/3">

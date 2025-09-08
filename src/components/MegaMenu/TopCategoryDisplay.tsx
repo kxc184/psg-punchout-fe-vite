@@ -1,7 +1,6 @@
 import React from "react";
 import clsx from "clsx";
 import { IGeneralCategory } from "../../api/megamenu";
-import { ArrowIcon } from "../ui/Icons";
 import CategoryDisplay from "./CategoryDisplay";
 
 interface Props {
@@ -22,33 +21,35 @@ const TopCategoryDisplay = ({
   clearHideTimeout,
 }: Props) => (
   <>
-    <li
-      className={clsx("sw:py-[13px] sw:relative", {
-        "sw:hover:underline active-icon":
-          isActive && topCategory.categories.length > 0,
-      })}
-    >
+    <li>
       <a
         href={topCategory.href || "#"}
         onMouseEnter={() => onMouseEnter(topCategory.uniqueID, "topCategory")}
-        className={clsx(
-          "sw:inline sw:cursor-pointer sw:text-[#979797] sw:font-semibold sw:leading-[normal] sw:hover:text-white",
-          { "sw:text-white": isActive },
-        )}
+        className={clsx(" swdc-link", {
+          "sw:!text-white hover:sw:!text-white": isActive,
+          "sw:!text-white/80": !isActive,
+        })}
       >
         {topCategory.name}
-        {topCategory.categories.length > 0 && <ArrowIcon />}
+        {topCategory.categories.length > 0 && (
+          <em className="swdc-if swdc-if--caret-right swdc-icon-[20px] sw:font-bold" />
+        )}
       </a>
     </li>
 
     {topCategory.categories.length > 0 && (
       <ul
         className={clsx(
-          "sw:bg-[#001234] sw:overflow-y-auto sw:ease-[cubic-bezier(0.25,0.1,0.25,0.1)] sw:-translate-x-full  sw:absolute sw:left-[256px] sw:top-0 sw:z-[-1] sw:h-full sw:w-[256px] sw:transition-transform sw:duration-200 ",
+          "sw:bg-[#000A2C] sw:space-y-1 sw:overflow-y-auto sw:ease-[cubic-bezier(0.25,0.1,0.25,0.1)] sw:-translate-x-full sw:absolute sw:left-[268px] sw:top-0 sw:z-[-1] sw:h-full sw:w-[268px] sw:transition-all sw:duration-200 sw:py-2",
           {
             "sw:translate-x-0": isActive,
           },
         )}
+        style={{
+          // Inline style is required for boxShadow here because Tailwind CSS does not support custom inset box-shadow values out of the box.
+          // This preserves the subtle depth effect from the legacy SCSS design without needing a custom Tailwind plugin or extra CSS file.
+          boxShadow: "inset 0.5em 0 0.5em -0.25em rgba(0,0,0,0.3)",
+        }}
         onMouseEnter={clearHideTimeout}
         onMouseLeave={onMouseLeave}
       >
