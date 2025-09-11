@@ -20,7 +20,7 @@ export const PROXY_AUTOSUGGEST_ENDPOINT = `/punchout-bff/products/auto-suggestio
 
 // ==================== ROUTES ====================
 export const HOMEPAGE = ["/", "/en-us"];
-export const SEE_ALL_PRODUCTS_ROUTE = `https://dev-punchout.sherwin-williams.com/SearchDisplay?catalogId=10551&storeId=10701&searchTerm=`;
+export const SEE_ALL_PRODUCTS_ROUTE = `${PUO_SW_HOST}/SearchDisplay?catalogId=10551&storeId=10701&searchTerm=`;
 
 // ==================== UI CONSTANTS ====================
 export const AUTO_SUGGEST_CONFIG = {
