@@ -1,15 +1,18 @@
-"use client";
-import "./styles.scss";
+import "./styles.css";
 import { useState } from "react";
 import TopCategoryDisplayMobile from "./TopCategoryDisplayMobile";
 
 import UtilityNavMobile from "../../UtilityNav/UtilityNavMobile";
-import { IGeneralCategory } from "../../../api/megamenu";
 import clsx from "clsx";
 import CategoryDisplayMobile from "./CategoryDisplayMobile";
 import { ArrowWThickIcon } from "../../ui/Icons";
+import { useMegaMenu } from "../../../api/megamenu/useMegaMenu";
+import { useWscCtx } from "../../../api/wcs/useWscCtx";
 
-const MegaMenuMobile = ({ data }: { data: IGeneralCategory[] | [] }) => {
+const MegaMenuMobile = () => {
+  const { data: ctx } = useWscCtx();
+  const { data, isLoading, error } = useMegaMenu(ctx!);
+
   const [activeTopCategoryId, setActiveTopCategoryId] = useState<string | null>(
     null
   );
@@ -26,6 +29,13 @@ const MegaMenuMobile = ({ data }: { data: IGeneralCategory[] | [] }) => {
     setActiveTopCategoryId(null);
     setActiveCategoryId(null);
   };
+
+  if (isLoading) return null;
+  if (error) {
+    // Handle error state
+    console.error("Megamenu error:", error);
+    throw error;
+  }
 
   return (
     <nav
@@ -45,7 +55,7 @@ const MegaMenuMobile = ({ data }: { data: IGeneralCategory[] | [] }) => {
           "menu-items sw:block sw:h-full sw:bg-[#333] sw:p-[15px] sw:text-[14px]"
         )}
       >
-        {data.map((topCategory) => (
+        {data?.map((topCategory) => (
           <TopCategoryDisplayMobile
             key={topCategory.uniqueID}
             topCategory={topCategory}

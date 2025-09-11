@@ -1,4 +1,5 @@
 import { ITradingPartnerInfo } from "@/api/header/types";
+import TradingPartnerInfoError from "./TradingPartnerInfoError";
 
 export type TTradingPartnerInfo = ITradingPartnerInfo;
 const TradingPartnerInfo = ({
@@ -6,12 +7,13 @@ const TradingPartnerInfo = ({
 }: {
   tradingPartner: TTradingPartnerInfo;
 }) => {
-  // TODO: Failed State
-  if (!tradingPartner) return null;
+  if (!tradingPartner) {
+    return <TradingPartnerInfoError />;
+  }
 
   const { name, accountNumber } = tradingPartner;
   return (
-    <li className=" sw:flex sw:justify-center sw:items-center sw:gap-2">
+    <li className=" sw:flex sw:justify-center sw:p-1 sw:items-center sw:gap-2">
       <em className="swdc-if swdc-if--map-pin "></em>
       <div className=" sw:flex sw:flex-col sw:justify-center sw:items-start">
         <p className="sw:font-bold sw:break-normal swdc-typeset-ui-4b ">

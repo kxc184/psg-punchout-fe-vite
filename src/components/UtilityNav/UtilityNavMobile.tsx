@@ -17,14 +17,8 @@ const UtilityNavMobile = () => (
       </p>
     </li>
     <li className="sw:gap-2 sw:h-full lg:sw:border-r lg:sw:border-solid lg:sw:border-neutral-70 sw:w-full sw:flex sw:items-center sw:py-1">
-      <a className="sw:flex sw:gap-2 sw:items-center sw:px-2" href="#">
-        <picture>
-          <img
-            className="!sw:w-2 !sw:h-2"
-            src="/en-us/location-white.svg"
-            alt="Location"
-          />
-        </picture>
+      <a className="sw:flex sw:gap-2 sw:items-start sw:px-2" href="#">
+        <em className="swdc-if swdc-if--map-pin swdc-icon-em sw:self-start sw:py-[4px]"></em>
         <div className="sw:text-[14px] sw:flex sw:flex-col sw:gap-1">
           <p className="sw:underline sw:font-semibold sw:text-white">
             My Store:
@@ -42,13 +36,7 @@ const UtilityNavMobile = () => (
         href="#"
         className="sw:flex sw:gap-2 sw:items-center sw:px-2 sw:text-[14px] sw:text-white visited:sw:text-white"
       >
-        <picture>
-          <img
-            className="!sw:w-2 !sw:h-2"
-            src="/en-us/clipboard-with-check-mark-white.svg"
-            alt="Clipboard"
-          />
-        </picture>
+        <em className="swdc-if swdc-if--notepad swdc-icon-em"></em>
         Quick Order
       </a>
     </li>
@@ -57,13 +45,7 @@ const UtilityNavMobile = () => (
         href="#"
         className="sw:flex sw:gap-2 sw:items-center sw:px-2 sw:text-[14px] sw:text-white visited:sw:text-white"
       >
-        <picture>
-          <img
-            className="!sw:w-2 !sw:h-2"
-            src="/en-us/clock-white.svg"
-            alt="Clock"
-          />
-        </picture>
+        <em className="swdc-if swdc-if--clock swdc-icon-em"></em>
         Order History
       </a>
     </li>

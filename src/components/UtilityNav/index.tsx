@@ -26,7 +26,7 @@ const UtilityNav = () => {
 
   return (
     <nav
-      className="sw:container sw:min-h-[80px] sw:min-w-[1090px] sw:max-w-[1440px] sw:bg-white sw:px-8 sw:mx-auto sw:text-primary sw:flex sw:justify-between"
+      className="sw:container  sw:hidden sw:md:flex sw:min-h-[80px] sw:min-w-[1090px] sw:max-w-[1440px] sw:bg-white sw:px-8 sw:mx-auto sw:text-primary  sw:justify-between"
       aria-label="Desktop utility navigation"
     >
       <ul className="sw:flex sw:justify-center sw:items-center sw:gap-4">

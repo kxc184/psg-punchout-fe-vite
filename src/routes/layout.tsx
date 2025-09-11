@@ -22,6 +22,7 @@ import { useMegaMenu } from "../api/megamenu/useMegaMenu";
 import FullPageSkeleton from "./FullPageSkeleton";
 
 import StickyNav from "../components/Header/StickyNav";
+import FullpageSkeletonMobile from "./FullpageSkeletonMobile";
 
 export default function Layout() {
   // Cache prime critical data for app
@@ -31,7 +32,16 @@ export default function Layout() {
 
   // Full loading page for all critical data
   if (isLoadingCtx || isLoadingMenu || isLoadingAccount) {
-    return <FullPageSkeleton />;
+    return (
+      <>
+        <main className="sw:hidden sw:md:block">
+          <FullPageSkeleton />
+        </main>
+        <main className="sw:block sw:md:hidden">
+          <FullpageSkeletonMobile />
+        </main>
+      </>
+    );
   }
 
   // TODO: Handle Auth more gracefully, maybe a redirect to ajaxlogin?
@@ -41,11 +51,11 @@ export default function Layout() {
 
   return (
     <main
-      className={`sw:grid sw:grid-rows-[auto_auto_auto_1fr_auto] sw:min-h-screen sw:bg-white`}
+      className={`sw:grid sw:grid-rows-[auto_auto_1fr_auto] sw:md:grid-rows-[auto_auto_auto_1fr_auto] sw:min-h-screen sw:bg-white`}
     >
       <Header />
       <StickyNav />
-      <section className="sw:container sw:max-w-[1090px] sw:mx-auto">
+      <section className="sw:container sw:max-w-[1090px] sw:mx-auto ">
         <Body />
       </section>
       <Footer />

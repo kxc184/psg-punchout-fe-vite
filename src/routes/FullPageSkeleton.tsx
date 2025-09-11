@@ -8,7 +8,7 @@ const FullPageSkeleton = () => {
       <UtilityNavSkeleton />
       <HeaderSkeleton />
       <div className="sw:flex sw:flex-1 sw:flex-col sw:bg-gray-100 sw:animate-pulse sw:rounded">
-        <div className=" sw:container sw:mx-auto sw:w-[1090px] sw:flex  sw:gap-2  ">
+        <div className=" sw:mx-auto sw:w-[1090px] sw:flex  sw:gap-2  ">
           <div className="sw:flex sw:gap-2">
             <div className="sw:w-[268px] sw:h-full sw:bg-gray-300 sw:animate-pulse sw:rounded"></div>
           </div>

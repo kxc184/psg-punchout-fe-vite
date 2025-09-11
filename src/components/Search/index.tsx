@@ -54,12 +54,12 @@ const Search = ({ placeholder }: { placeholder?: string }) => {
   return (
     <div ref={searchContainerRef} className="sw:h-full sw:w-full sm:sw:px-4">
       <div className="sw:flex sw:items-center sw:w-full sw:h-full">
-        <div className="sw:w-full sw:bg-white sw:max-w-[537px]  sw:h-[40px] sw:rounded-full sw:flex sw:items-center sw:gap-1">
+        <div className="sw:w-full sw:bg-white sw:max-w-[537px]  sw:h-[22px] sw:md:h-[40px] sw:rounded-sm  sw:md:rounded-full sw:flex sw:items-center ">
           <input
             type="text"
             value={searchVal}
             placeholder={placeholder}
-            className="sw:w-full sw:h-full sw:outline-none sw:rounded-full swdc-typeset-ui-4b sw:pl-2 search-input"
+            className="sw:w-full sw:h-full sw:outline-none sw:rounded-sm sw:md:rounded-full swdc-typeset-ui-4b sw:pl-2"
             onChange={(e) => handleSearchInput(e.target.value)}
             aria-label="Search"
             autoComplete="off"
@@ -70,19 +70,19 @@ const Search = ({ placeholder }: { placeholder?: string }) => {
           <button
             onClick={clearSearch}
             className={clsx(
-              "swdc-button swdc-button--text swdc-button--action swdc-button--circle ",
+              "swdc-button  swdc-button--text swdc-button--action  ",
               {
                 "sw:!hidden": !searchVal.length,
               }
             )}
           >
-            <em className="swdc-if swdc-if--error"></em>
+            <em className="swdc-if swdc-if--close sw:!text-xs sw:md:!text-lg "></em>
           </button>
           <button
-            className="swdc-button swdc-button--text swdc-button--action swdc-button--circle"
+            className="swdc-button  swdc-button--text swdc-button--action"
             onClick={handleSearchClick}
           >
-            <em className="swdc-if swdc-if--search search-icon"></em>
+            <em className="swdc-if swdc-if--search sw:!text-xs sw:md:!text-lg "></em>
           </button>
         </div>
       </div>
