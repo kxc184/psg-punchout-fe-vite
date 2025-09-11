@@ -7,9 +7,9 @@ const Error = () => {
     <div className="sw:fixed sw:inset-0 sw:z-10 sw:w-full sw:min-h-screen">
       {/* Page structure (header, body, footer) */}
       <div className="sw:relative sw:z-20 sw:flex sw:flex-col sw:min-h-screen sw:w-full">
-        <div className="sw:h-[72px] sw:mx-auto sw:min-w-[990px] sw:max-w-[1440px]"></div>
+        <div className="sw:h-[72px] sw:mx-auto sw:min-w-[1090px] sw:max-w-[1440px]"></div>
         <div className="sw:hidden sw:md:block sw:bg-pro-primary sw:text-white sw:py-[15px] sw:h-[183px] ">
-          <div className="sw:container sw:max-w-[990px] sw:mx-auto sw:flex sw:items-center sw:justify-between">
+          <div className="sw:container sw:max-w-[1090px] sw:mx-auto sw:flex sw:items-center sw:justify-between">
             <div className="sw:flex sw:flex-col sw:w-full   sw:mt-[-.9rem]">
               <Link to="/">
                 <picture>

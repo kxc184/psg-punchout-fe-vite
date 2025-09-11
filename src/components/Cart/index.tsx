@@ -5,7 +5,7 @@ const MiniCart = () => {
   return (
     <a
       aria-label="mini cart"
-      className=" sw:capitalize sw:text-[1rem] sw:font-bold sw:text-center sw:text-white sw:min-w-[100px] sm:sw:shadow-xl  sw:h-full  sw:cursor-pointer sw:flex sw:flex-col sw:gap-[2px] sw:items-center sw:justify-center"
+      className=" sw:capitalize sw:text-[1rem] sw:font-bold sw:text-center sw:text-white sw:min-w-[50px] sm:sw:shadow-xl  sw:h-full  sw:cursor-pointer sw:flex sw:flex-col sw:gap-[2px] sw:items-center sw:justify-center"
       href="#"
     >
       <div className="sw:flex sw:gap-[4px] sw:items-center md:sw:items-start sw:justify-center">

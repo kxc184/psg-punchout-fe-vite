@@ -1,27 +1,29 @@
 "use client";
 import { useState } from "react";
-import MegaMenuMobile from "../MegaMenuClient/mobile/MegaMenuMobile";
 import MiniCart from "../Cart";
 import Search from "../Search";
 import { MenuIcon, XIcon } from "../ui/Icons";
 import { AUTO_SUGGEST_CONFIG } from "../../lib/constants";
+import MegaMenuMobile from "../MegaMenu/mobile/MegaMenuMobile";
+import { Link } from "react-router";
+import clsx from "clsx";
 
 const HeaderMobile = () => {
   const [showMenu, setShowMenu] = useState(false);
   return (
     <div className="headerContainerMobile sw:md:hidden sw:w-full">
       <div className=" sw:w-full sw:bg-[#373737]">
-        <div className="sw:container sw:relative sw:max-w-[990px] sw:mx-auto">
-          <div className="sw:flex sw:items-center sw:justify-start sw:h-[115px]">
-            <a href="/" className="">
+        <div className="sw:container sw:relative sw:max-w-[760px] sw:mx-auto">
+          <div className="sw:flex sw:items-center sw:h-[115px]">
+            <Link to="/">
               <picture>
                 <img
-                  className=" sw:px-[30px] sw:py-[15px] sw:object-fit "
-                  src="/en-us/logo.png"
+                  className="  sw:pl-4 sw:object-fit "
+                  src="/sherwin-williams-header-logo.png"
                   alt="Sherwin-Williams Logo"
                 />
               </picture>
-            </a>
+            </Link>
           </div>
           <div className="sw:flex sw:h-[45px] sw:w-full sw:bg-[#373737] sw:border-t-[#4c4c4c] sw:border-solid sw:border-y-[1px] sw:border-b-[#111] ">
             <div className="sw:flex sw:items-center sw:justify-center sw:w-[50px] sw:h-full">
@@ -35,9 +37,13 @@ const HeaderMobile = () => {
             </div>
             <div
               aria-label="mobile-megamenu"
-              className={`${
-                showMenu ? "sw:left-0 sw:block" : "sw:left-[-300px] "
-              }  sw:bg-[#333] sw:absolute sw:w-[300px] sw:top-[100%] sw:h-[calc(100vh-160px)] sw:transition-all sw:duration-200 sw:text-base sw:z-20 sw:col-span-1`}
+              className={clsx(
+                "sw:bg-[#333] sw:absolute sw:w-[300px] sw:top-[100%] sw:h-[calc(100vh-160px)] sw:transition-all sw:duration-200 sw:text-base sw:z-20 sw:col-span-1",
+                {
+                  "sw:left-0 sw:block": showMenu,
+                  "sw:left-[-300px]": !showMenu,
+                }
+              )}
             >
               <MegaMenuMobile />
             </div>
