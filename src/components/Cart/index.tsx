@@ -2,10 +2,9 @@ import { useMiniCart } from "../../api/mini-cart/useMiniCart";
 
 const MiniCart = () => {
   const { data } = useMiniCart();
-  console.log(data)
   const totalPrice = Number(data?.totalPrice);
   return (
-   <div className="sw:flex sw:items-center sw:h-full sw:justify-center sw:pr-3 sw:text-center">
+    <div className="sw:flex sw:items-center sw:h-full sw:justify-center sw:pr-3 sw:text-center">
       <a
         aria-label="mini cart"
         className="swdc-typeset-button-1 sw:text-white"
