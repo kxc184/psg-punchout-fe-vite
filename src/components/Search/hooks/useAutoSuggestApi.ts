@@ -22,19 +22,26 @@ export function useAutoSuggestApi(query: string) {
     products: [],
   });
   const [showAutoSuggest, setShowAutoSuggest] = useState(false);
-  const { data, isLoading, error } = useAutoSuggest(query, ctx!);
+  const { data, isLoading, error } = useAutoSuggest(encodeURIComponent(query), ctx!);
 
   // Update autoSuggestData when data changes
   useEffect(() => {
+    if (isLoading) {
+      setShowAutoSuggest(true)
+    }
     if (data) {
       setAutoSuggestData(data);
-      setShowAutoSuggest(true);
     }
-    if (error) {
+    if (error || query.length < 3) {
       setShowAutoSuggest(false);
     }
   }, [data, error, query]);
 
+  useEffect(()=> {
+    if (data && query.length > 3) {
+      setShowAutoSuggest(true);
+    }
+  }, [data, query])
   return {
     autoSuggestData,
     setAutoSuggestData,

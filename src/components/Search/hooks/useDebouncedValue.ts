@@ -7,12 +7,9 @@ export const useDebouncedValue = (value: string, delay: number) => {
   const debouncedSet = useMemo(
     () =>
       debounce((value: string) => {
-        if (value.length < 3) {
-          return;
-        }
         setDebounced(value);
       }, delay),
-    [delay]
+    [delay, value]
   );
   useEffect(() => {
     debouncedSet(value);

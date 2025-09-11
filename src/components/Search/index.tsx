@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AutoSuggest from "./AutoSuggest";
 import clsx from "clsx";
 import { SEE_ALL_PRODUCTS_ROUTE } from "../../lib/constants";
@@ -9,10 +9,15 @@ import { useDebouncedValue } from "./hooks/useDebouncedValue";
 const Search = ({ placeholder }: { placeholder?: string }) => {
   const searchContainerRef = useRef<HTMLDivElement>(null!);
   const [searchVal, setSearchVal] = useState("");
-  const debouncedSearchVal = useDebouncedValue(searchVal, 300);
+  const [autoSuggestTerm, setAutoSuggestTerm] = useState("");
+  const debouncedSearchVal = useDebouncedValue(searchVal.trim(), 300);
+
+  useEffect(()=> {
+    setAutoSuggestTerm(debouncedSearchVal);
+  }, [debouncedSearchVal]);
 
   const { autoSuggestData, showAutoSuggest, setShowAutoSuggest, isLoading } =
-    useAutoSuggestApi(debouncedSearchVal);
+    useAutoSuggestApi(autoSuggestTerm)
 
   useClickOutside(searchContainerRef, () => {
     setShowAutoSuggest(false);
@@ -32,7 +37,6 @@ const Search = ({ placeholder }: { placeholder?: string }) => {
 
   const handleSearchInput = (searchTerm: string) => {
     setSearchVal(searchTerm);
-    if (!showAutoSuggest) setShowAutoSuggest(true);
   };
 
   const clearSearch = () => {
@@ -46,9 +50,7 @@ const Search = ({ placeholder }: { placeholder?: string }) => {
   };
 
   const handleCategoryClick = (term: string) => {
-    if (searchVal) {
-      setSearchVal(term);
-    }
+   setAutoSuggestTerm(term);
   };
 
   return (
