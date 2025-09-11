@@ -1,13 +1,13 @@
-import { MiniCartData, OrderItem } from ".";
+import { CartResponse, MiniCartData } from "./types";
 
-export const transformMiniCart = (totalPrice: string, items: OrderItem[]) => {
-  const calculatedTally = items.reduce(
-    (accumulator, { quantity }) => accumulator + parseInt(quantity),
-    0,
-  );
+export const transformCart = (response: CartResponse) => {
+  return response;
+};
+
+export const transformMiniCart = (response: CartResponse) => {
   const miniCartData = {
-    tally: calculatedTally,
-    total: parseFloat(totalPrice),
+    quantity: response?.totalQuantity ?? "",
+    totalPrice: response?.grandTotal ?? "",
   } as MiniCartData;
 
   return miniCartData;

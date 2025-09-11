@@ -30,7 +30,7 @@ const StickyNav = () => {
           <li className="sw:w-full sw:flex sw:items-center sw:justify-center sw:max-w-[256px]  sw:top-[65%] sw:h-full sw:left-0 sw:z-20 sw:rounded-md ">
             <MegaMenu isStuck={isStuck} />
           </li>
-          <li className="sw:w-full sw:pl-1">
+          <li className="sw:w-full sw:justify-items-start sw:pl-1">
             <Search placeholder={AUTO_SUGGEST_CONFIG.PLACE_HOLDER.SEARCH} />
           </li>
           <li>

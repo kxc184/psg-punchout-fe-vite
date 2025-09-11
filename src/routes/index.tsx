@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router";
-import Layout from "./Layout";
+import Layout from "./layout";
 import App from "../App";
 import Cart from "./Cart";
-import FullErrorPage from "./Error";
+import FullErrorPage from "./error";
 
 export const router = createBrowserRouter([
   {
