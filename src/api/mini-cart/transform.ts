@@ -1,4 +1,4 @@
-import { CartResponse, MiniCartData } from "./cart";
+import { CartResponse, MiniCartData } from "./types";
 
 export const transformCart = (response: CartResponse) => {
   return response;

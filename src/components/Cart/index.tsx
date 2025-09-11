@@ -19,12 +19,12 @@ const MiniCart = () => {
           )}
         </div>
         <p className="sw:text-center swdc-typeset-ui-5">
-          {!isNaN(totalPrice) ? Intl.NumberFormat("en-us", {
+          {!isNaN(totalPrice) && Intl.NumberFormat("en-us", {
             currency: "USD",
             currencyDisplay: "symbol",
             currencySign: "standard",
             style: "currency",
-          }).format(totalPrice) : null}
+          }).format(totalPrice)}
         </p>
       </a>
     </div>
