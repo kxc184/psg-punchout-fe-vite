@@ -2,30 +2,33 @@ import { useMiniCart } from "../../api/mini-cart/useMiniCart";
 
 const MiniCart = () => {
   const { data } = useMiniCart();
+  const totalPrice = Number(data?.totalPrice);
   return (
-    <a
-      aria-label="mini cart"
-      className=" sw:capitalize sw:text-[1rem] sw:font-bold sw:text-center sw:text-white sw:min-w-[50px] sm:sw:shadow-xl  sw:h-full  sw:cursor-pointer sw:flex sw:flex-col sw:gap-[2px] sw:items-center sw:justify-center"
-      href="#"
-    >
-      <div className="sw:flex sw:gap-[4px] sw:items-center md:sw:items-start sw:justify-center">
-        {/* <IconRegularShoppingCart className="sw:fill-white sw:h-[1.4em] sw:w-[1.3em] md:sw:h-[1.4rem] md:sw:w-[1.3rem] " /> */}
-
-        {data !== undefined && (
-          <p className="sw:text-[#3bf] sw:text-[.65em] md:sw:text-[1em]">
-            {data.tally}
-          </p>
-        )}
-      </div>
-      <p className="sw:text-[.75rem] sw:font-normal sw:hidden md:sw:block">
-        {Intl.NumberFormat("en-us", {
-          currency: "USD",
-          currencyDisplay: "symbol",
-          currencySign: "standard",
-          style: "currency",
-        }).format(data?.total || 0)}
-      </p>
-    </a>
+    <div className="sw:flex sw:items-center sw:h-full sw:justify-center sw:pr-3 sw:text-center">
+      <a
+        aria-label="mini cart"
+        className="swdc-typeset-button-1 sw:text-white"
+        href="#"
+      >
+        <div className="sw:relative">
+          <em className="swdc-if swdc-if--shopping-cart"></em>
+          {data?.quantity && (
+            <div className="sw:absolute sw:top-[-6px] sw:right-[2px] sw:h-[18px] sw:w-[18px] sw:bg-[#001234] sw:text-center sw:rounded-full">
+              {data.quantity}
+            </div>
+          )}
+        </div>
+        <p className="sw:text-center swdc-typeset-ui-5">
+          {!isNaN(totalPrice) &&
+            Intl.NumberFormat("en-us", {
+              currency: "USD",
+              currencyDisplay: "symbol",
+              currencySign: "standard",
+              style: "currency",
+            }).format(totalPrice)}
+        </p>
+      </a>
+    </div>
   );
 };
 export default MiniCart;
